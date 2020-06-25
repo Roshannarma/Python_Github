@@ -1,0 +1,2 @@
+Largest number = 126410606437752
+Largest prime number needed(square root of largest number) = 11,243,247
