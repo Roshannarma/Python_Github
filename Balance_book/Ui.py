@@ -4,6 +4,7 @@ import numpy as np
 import copy
 import tkinter.messagebox
 from pathlib import Path
+import time
 double_check = tkinter.messagebox.askquestion
 class Group:
     def __init__(self,name):
