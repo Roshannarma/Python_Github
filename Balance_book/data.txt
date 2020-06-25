@@ -1,0 +1,4 @@
+Food$400$50$[(150, 'costco'), (200, 'whole_foods'), [50, 'Groceries']]
+Amazon$300$0$[]
+Dog$500$0$[]
+Rent$900$900$[[900, 'Monthly Payment']]
