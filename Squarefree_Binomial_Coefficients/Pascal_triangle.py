@@ -12,7 +12,7 @@ def create_pascal(depth):
         x += 1
     return my_pascal_triangle
 mytime = time.time()
-f = open("D:\Python_Github\Squarefree_Binomial_Coefficients\Prime_numbers.txt","r")
+f = open("D:\Data_holder\Prime_numbers.txt","r")
 my_prime_numbers = eval(f.readline())
 print(time.time()-mytime)
 def check_divisible_prime(n):

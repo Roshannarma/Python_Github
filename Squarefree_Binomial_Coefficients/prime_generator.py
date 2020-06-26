@@ -21,7 +21,7 @@ def SieveOfEratosthenes(n):
     for p in range(n + 1):
         if prime[p]:
             mylist.append(p)
-    f = open("D:\Python_Github\Squarefree_Binomial_Coefficients\Prime_numbers.txt","w")
+    f = open("D:\Data_holder\Prime_numbers.txt","w")
     f.write(str(mylist))
     f.close()
 #    return(list)
