@@ -3,7 +3,8 @@ from matplotlib import pyplot as plt
 import numpy as np
 import datetime as dt
 import matplotlib.dates as mdates
-import basic_spell_check as bsc
+import better_spell_check as bsc
+import time
 f = open("D:\Python_Github\John_hopkins_api\some_countries.txt","r")
 my_dict = eval(f.readline())
 f.close()
@@ -11,9 +12,12 @@ my_input = input("Give a Country you want to look up: ")
 f = open("D:\Python_Github\John_hopkins_api\slugs.txt","r")
 my_slugs_list = eval(f.readline())
 f.close()
-my_country = bsc.spell_check(my_dict,my_input)
-my_slug = my_slugs_list[my_dict.index(my_country[0])]
-print(my_slug)
+#mytime = time.time()
+my_country = bsc.spell_checker(my_input)
+#print(time.time()-mytime)
+print(my_country)
+my_slug = my_slugs_list[my_dict.index(my_country)]
+#print(my_slug)
 url = "https://api.covid19api.com/total/dayone/country/" +  my_slug + "/status/confirmed"
 
 payload = {}

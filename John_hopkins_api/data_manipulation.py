@@ -5,12 +5,14 @@ dict = eval(f.readline())
 #print(dict)
 for x in range(0,len(dict)):
     if dict[x] == "Korea (North)":
-        dict[x] = "North Korea"
+        dict[x] = "north korea"
     elif dict[x] == "Korea (South)":
-        dict[x] = "South Korea"
+        dict[x] = "south korea"
     elif "(" in dict[x]:
         location = dict[x].index("(")
-        dict[x] = dict[x][0:location-1]
+        dict[x] = (dict[x][0:location-1]).lower()
+    else:
+        dict[x] = dict[x].lower()
 
 f.close()
 f = open("D:\Python_Github\John_hopkins_api\some_countries.txt","w")
