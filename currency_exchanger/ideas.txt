@@ -1,0 +1,6 @@
+Choose American dollar to something or something to something
+Choose country or currency to put in
+Country: takes whatever currency and prints out to double check and then saves the price
+Currency: Checks if unique currency, if not, print out list of countries to choose from. Then saves the price
+Once in american dollar, twice if not
+print out exchange rate
