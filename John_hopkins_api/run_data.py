@@ -33,14 +33,38 @@ country_entry.place(x=35,y=50)
 country_label.place(x=25,y=10)
 def country_exit():
     human_spelling = str(country_entry.get())
-    print(human_spelling)
+#    print(human_spelling)
+    global my_country
     my_country = bsc.spell_checker(human_spelling)
-    print(my_country)
+#    print(my_country)
+    global my_slug
     my_slug = my_slugs_list[my_dict.index(my_country)]
     country_input_window.destroy()
 
     # gathering data from api based on country
-    url = "https://api.covid19api.com/total/dayone/country/" +  my_slug + "/status/confirmed"
+    data_window = Tk()
+    data_window.title("Deaths/recovered/confirmed")
+    global my_choice
+    my_choice = 0
+    def my_deaths():
+        data_window.destroy()
+        next("deaths")
+    def my_recovered():
+        data_window.destroy()
+        next("recovered")
+    def my_confirmed():
+        x = 5
+        data_window.destroy()
+        next("deaths")
+    deaths = Button(data_window,text="Deaths",command = my_deaths)
+    recovered = Button(data_window,text="recovered",command = my_recovered)
+    confirmed = Button(data_window,text="confirmed",command = my_confirmed)
+    deaths.pack()
+    recovered.pack()
+    confirmed.pack()
+    data_window.mainloop()
+def next(my_choice):
+    url = "https://api.covid19api.com/total/dayone/country/" +  my_slug + "/status/" + my_choice
     payload = {}
     headers= {}
     response = requests.request("GET", url, headers=headers, data = payload)
