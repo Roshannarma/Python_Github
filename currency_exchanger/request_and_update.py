@@ -8,6 +8,7 @@ df = pd.read_html(str(table))
 mylist = df[0].to_json(orient='records')
 new_list_of_dictionary = []
 currency_names = {}
+country_list = {}
 for x in eval(mylist):
     my_temp_dict = {}
     my_temp_list = x['Country - Currency'].split("-")
@@ -16,8 +17,9 @@ for x in eval(mylist):
         currency_names[my_temp_list[1]] += ", " + my_temp_list[0]
     else:
         currency_names[my_temp_list[1]] = my_temp_list[0]
+    country_list[my_temp_list[0]] = (x['Foreign Currency to $1.00'],my_temp_list[1])
     my_temp_dict['Currency'] = my_temp_list[1]
     my_temp_dict['Exchange rate'] = x['Foreign Currency to $1.00']
     new_list_of_dictionary.append(my_temp_dict)
 with open("D:\Python_Github\currency_exchanger\my_new_data.txt","w") as f:
-    f.write(str(new_list_of_dictionary)+"\n"+str(currency_names))
+    f.write(str(currency_names)+"\n"+str(country_list))
