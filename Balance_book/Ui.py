@@ -73,7 +73,13 @@ def display():
         for thing in Category.List_of_all:
             labels.append(thing.name)
             sizes.append(thing.budget)
-        plt.pie(sizes, labels=labels,autopct='%1.1f%%')
+        def make_autopct(values):
+            def my_autopct(pct):
+                total = sum(sizes)
+                val = int(round(pct*total/100.0))
+                return '{v:d}'.format(v=val)
+            return my_autopct
+        plt.pie(sizes, labels=labels,autopct=make_autopct(sizes))
         plt.axis('equal')
         plt.title("Budget percentages")
         plt.show()
@@ -103,7 +109,13 @@ def display():
         for thing in Category.List_of_all:
             labels.append(thing.name)
             sizes.append(thing.spent)
-        plt.pie(sizes, labels=labels,autopct='%1.1f%%')
+        def make_autopct(values):
+            def my_autopct(pct):
+                total = sum(sizes)
+                val = int(round(pct*total/100.0))
+                return '{v:d}'.format(v=val)
+            return my_autopct
+        plt.pie(sizes, labels=labels, autopct=make_autopct(sizes))
         plt.axis('equal')
         plt.title("Spent percentages")
         plt.show()
@@ -143,7 +155,7 @@ def set_budget():
     def set_budget_exit():
         for thing in Category.List_of_all:
             try:
-                thing.budget = int(thing.entry.get())
+                thing.budget = float(thing.entry.get())
             except:
                 pass
         set_budget_window.destroy()
@@ -164,7 +176,7 @@ def set_expense():
     def set_expense_exit():
         for thing in Category.List_of_all:
             try:
-                amount = int(thing.entry.get())
+                amount = float(thing.entry.get())
                 thing.spent += amount
                 thing.expense_list.append([amount,thing.entry2.get()])
             except:
