@@ -5,6 +5,7 @@ import copy
 import tkinter.messagebox
 from pathlib import Path
 import time
+from datetime import datetime
 double_check = tkinter.messagebox.askquestion
 class Group:
     def __init__(self,name):
@@ -185,11 +186,30 @@ def set_expense():
     Button(set_expense_window,command = set_expense_exit,text="Done",font=Font).place(x = location_x+50, y= location_y +50)
 def exit():
     window.destroy()
+def end_month():
+    my_check = double_check("Check input","Do you want to end the month")
+    if my_check == "yes":
+        with open(location + "\year.txt","a") as f:
+            datem = datetime.today().strftime("%m/%y")
+            month = int(str(datem)[:2]) - 1
+            month = str(month) + datem[2:]
+            with open(location + "\data.txt","r+") as txt:
+                my_month_data = txt.readlines()
+                txt.close()
+            with open(location + "\data.txt","w") as txt:
+                txt.close()
+            f.write("\n")
+            f.write(month + "\n")
+            for x in my_month_data:
+                f.write(x)
+            f.close()
 add_remove_category_btn = Button(window,command = add_remove,text = "Add/remove category",font = Font,wraplength = 100)
 display_btn = Button(window,command = display,text = "Display budget",font = Font)
 set_budget_btn = Button(window,command = set_budget,text = "Set Budget",font = Font)
 add_expense_btn = Button(window,command = set_expense,text = "Add an expense",font = Font)
 exit_btn = Button(window,command = exit,text = "Exit",font = Font)
+end_month_btn = Button(window,command = end_month,text="End month", font =Font)
+end_month_btn.place(x =450, y = 450, height = 50, width = 100)
 add_remove_category_btn.place(x = 125,y = 100, height=200, width=150)
 display_btn.place(x = 325,y = 100,height=200, width=150)
 set_budget_btn.place(x = 525,y = 100,height=200, width=150)
